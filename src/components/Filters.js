@@ -1,11 +1,19 @@
 import React from "react";
 
-function Filters() {
+function Filters({onChangeType, onFindPetsClick}) {
+
+  function handleFindButton(){
+    onFindPetsClick()
+  }
+  
+  function handleChangeType(event){
+    onChangeType(event.target.value)
+  }
   return (
     <div className="ui form">
       <h3>Animal type</h3>
       <div className="field">
-        <select name="type" id="type" aria-label="type">
+        <select onChange={handleChangeType} name="type" id="type" aria-label="type">
           <option value="all">All</option>
           <option value="cat">Cats</option>
           <option value="dog">Dogs</option>
@@ -14,7 +22,7 @@ function Filters() {
       </div>
 
       <div className="field">
-        <button className="ui secondary button">Find pets</button>
+        <button  onClick={handleFindButton} className="ui secondary button">Find pets</button>
       </div>
     </div>
   );
